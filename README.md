@@ -1,6 +1,6 @@
 # devstar-mcp-server
 
-devstar-mcp-server是DevStar Studio的组成部分，可以实现与大模型对话方式提交生成代码并提交pr等功能。
+devstar-mcp-server是DevStar Studio的组成部分，可以实现与大模型对话方式生成代码、提交代码、提交pr等功能。
 
 ## 快速部署
 
