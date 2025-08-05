@@ -46,9 +46,9 @@ Gitea MCP 服务器支持以下工具：
 
 1.创建一个名为 demo-workflow-repo 的新仓库，描述为“工作流自动化测试仓库”，设置为私有
 
-![](C:\Users\11868\Desktop\组会\7-16-3.png)
+![](img\ex-1.png)
 
-![](C:\Users\11868\Desktop\组会\7-16-2.png)
+![](img\ex-2.png)
 
 2.在仓库中创建一个功能需求 issue，标题为"实现用户登录功能"，内容为：
 
@@ -69,37 +69,37 @@ Gitea MCP 服务器支持以下工具：
 
 ```
 
-![](C:\Users\11868\Desktop\组会\7-16-4.png)
+![](img\ex-3.png)
 
-![](C:\Users\11868\Desktop\组会\7-16-5.png)
+![](img\ex-4.png)
 
 3.列出所有的issue
 
-![](C:\Users\11868\Desktop\组会\7-16-10.png)
+![](img\ex-5.png)
 
 4.基于 issue 需求在本地实现这个功能
 
-![](C:\Users\11868\Desktop\组会\7-16-11.png)
+![](img\ex-6.png)
 
-![](C:\Users\11868\Desktop\组会\7-16-12.png)
+![](img\ex-7.png)
 
 5.提交这个分支
 
-![](C:\Users\11868\Desktop\组会\7-16-13.png)
+![](img\ex-8.png)
 
-![](C:\Users\11868\Desktop\组会\7-16-6.png)
+![](img\ex-9.png)
 
 6.给该 PR 添加一条评论："代码已完成，请审核。"
 
-![](C:\Users\11868\Desktop\组会\7-16-14.png)
+![](img\ex-10.png)
 
-![](C:\Users\11868\Desktop\组会\7-16-7.png)
+![](img\ex-11.png)
 
 7.关闭该 issue。
 
-![](C:\Users\11868\Desktop\组会\7-16-15.png)
+![](img\ex-12.png)
 
-![](C:\Users\11868\Desktop\组会\7-16-8.png)
+![](img\ex-13.png)
 
 ![](C:\Users\11868\Desktop\组会\7-16-9.png)
 
