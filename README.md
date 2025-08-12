@@ -207,8 +207,6 @@ DevStar MCP 服务器提供以下常用工具，帮助您高效管理 Gitea 仓�
 | **create_branch** | 🌿 分支管理 | 创建新分支 | [查看示例](docs/example.md#create_branch) |
 | **delete_branch** | 🌿 分支管理 | 删除分支 | [查看示例](docs/example.md#delete_branch) |
 | **list_branches** | 🌿 分支管理 | 列出仓库分支 | [查看示例](docs/example.md#list_branches) |
-| **get_file_content** | 📄 文件操作 | 获取文件内容和元数据 | [查看示例](docs/example.md#get_file_content) |
-| **get_dir_content** | 📄 文件操作 | 获取目录内容列表 | [查看示例](docs/example.md#get_dir_content) |
 | **create_issue** | 🐛 问题管理 | 创建新问题 | [查看示例](docs/example.md#create_issue) |
 | **list_repo_issues** | 🐛 问题管理 | 列出仓库问题 | [查看示例](docs/example.md#list_repo_issues) |
 | **create_issue_comment** | 🐛 问题管理 | 创建问题评论 | [查看示例](docs/example.md#create_issue_comment) |
