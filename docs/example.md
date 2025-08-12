@@ -9,26 +9,25 @@
 
 **Prompt 示例：**
 ```
-请帮我获取当前用户的详细信息
+获取我的用户信息。
 ```
 
-**使用场景：**
-- 验证用户身份
-- 获取用户配置信息
-- 用户权限检查
+![](img/example/get_my_user_info.png)
+
+
 
 ### search_users
 搜索用户
 
 **Prompt 示例：**
 ```
-请搜索用户名为 "john" 的用户，返回匹配的用户列表。
+请搜索用户名 "john" 的用户，返回匹配的用户列表。
 ```
 
-**使用场景：**
-- 查找特定用户
-- 用户管理
-- 权限分配
+**所需参数：**
+- keyword: 搜索关键词（如用户名、昵称、邮箱片段）
+ 
+![](img/example/search_users.png)
 
 ## 📦 仓库管理
 
@@ -40,36 +39,37 @@
 请帮我创建一个名为 "my-project" 的新仓库，设置为私有仓库，描述为 "这是一个示例项目"。
 ```
 
-**使用场景：**
-- 新项目初始化
-- 代码托管
-- 团队协作
+**所需参数：**
+- name: 仓库名称
+ 
+![](img/example/create_repo.png)
 
 ### list_my_repos
 列出用户拥有的仓库
 
 **Prompt 示例：**
 ```
-请列出我拥有的所有仓库，包括仓库名称、描述、创建时间和最后更新时间。
+列出我的所有仓库
 ```
 
-**使用场景：**
-- 仓库概览
-- 项目管理
-- 存储空间检查
+**所需参数：**
+- page: 页码（从 1 开始）
+- pageSize: 每页返回的仓库数量
+ 
+![](img/example/list_my_repos.png)
 
 ### search_repos
 搜索仓库
 
 **Prompt 示例：**
 ```
-请搜索包含 "web" 关键词的仓库，返回匹配的仓库列表。
+搜索包含 "web" 关键词的仓库，返回匹配的仓库列表。
 ```
 
-**使用场景：**
-- 查找特定项目
-- 代码复用
-- 项目发现
+**所需参数：**
+- keyword: 搜索关键词（匹配仓库名、描述或主题）
+ 
+![](img/example/search_repos.png)
 
 ## 🌿 分支管理
 
@@ -78,67 +78,45 @@
 
 **Prompt 示例：**
 ```
-请从 main 分支创建一个名为 "feature/user-auth" 的新分支。
+从 xxx仓库的 main 分支创建一个名为 "feature/user-auth" 的新分支。
 ```
 
-**使用场景：**
-- 功能开发
-- 代码隔离
-- 版本管理
+**所需参数：**
+- owner: 仓库拥有者（用户名或组织名）
+- repo: 仓库名称
+- branch: 新分支名称
+- old_branch: 基础分支名称（从该分支创建新分支）
+ 
+![](img/example/create_branch.png)
 
 ### delete_branch
 删除分支
 
 **Prompt 示例：**
 ```
-请删除名为 "feature/old-feature" 的分支，该功能已经合并到主分支。
+删除名为 "feature/old-feature" 的分支。
 ```
 
-**使用场景：**
-- 清理旧分支
-- 维护仓库整洁
-- 释放存储空间
+**所需参数：**
+- owner: 仓库拥有者（用户名或组织名）
+- repo: 仓库名称
+- branch: 要删除的分支名称
+ 
+![](img/example/delete_branch.png)
 
 ### list_branches
 列出仓库分支
 
 **Prompt 示例：**
 ```
-请列出 "my-project" 仓库的所有分支，包括分支名称、最新提交信息和最后更新时间。
+请列出 "my-project" 仓库的所有分支。
 ```
 
-**使用场景：**
-- 分支概览
-- 代码审查
-- 版本追踪
-
-## 📄 文件操作
-
-### get_file_content
-获取文件内容和元数据
-
-**Prompt 示例：**
-```
-请获取 "src/main.js" 文件的内容，并显示文件大小、最后修改时间等元数据。
-```
-
-**使用场景：**
-- 代码查看
-- 文件分析
-- 内容比较
-
-### get_dir_content
-获取目录内容列表
-
-**Prompt 示例：**
-```
-请列出 "src" 目录下的所有文件和子目录，包括文件类型、大小和修改时间。
-```
-
-**使用场景：**
-- 项目结构查看
-- 文件导航
-- 依赖分析
+**所需参数：**
+- owner: 仓库拥有者（用户名或组织名）
+- repo: 仓库名称
+ 
+![](img/example/list_branches.png)
 
 ## 🐛 问题管理
 
@@ -146,14 +124,18 @@
 创建新问题
 
 **Prompt 示例：**
+
 ```
-请创建一个新的 issue，标题为 "修复登录页面样式问题"，描述为 "登录页面的按钮样式在移动端显示异常，需要调整响应式设计"。
+在xxx仓库中创建一个新的 issue，标题为 "修复登录页面样式问题"，描述为 "登录页面的按钮样式在移动端显示异常，需要调整响应式设计"。
 ```
 
-**使用场景：**
-- Bug 报告
-- 功能请求
-- 任务跟踪
+**所需参数：**
+- owner: 仓库拥有者（用户名或组织名）
+- repo: 仓库名称
+- title: 问题标题
+- body: 问题正文/描述
+ 
+![](img/example/create_issue.png)
 
 ### list_repo_issues
 列出仓库问题
@@ -163,12 +145,14 @@
 请列出 "my-project" 仓库的所有 open 状态的 issue，按创建时间排序。
 ```
 
-**使用场景：**
-- 问题跟踪
-- 项目管理
-- 优先级排序
+**所需参数：**
+- owner: 仓库拥有者（用户名或组织名）
+- repo: 仓库名称
+ 
+![](img/example/list_repo_issues.png)
 
 ### create_issue_comment
+
 创建问题评论
 
 **Prompt 示例：**
@@ -176,23 +160,30 @@
 请在 issue #123 下添加评论："这个问题我已经在本地复现，正在修复中，预计明天完成。"
 ```
 
-**使用场景：**
-- 问题更新
-- 团队沟通
-- 进度跟踪
+**所需参数：**
+- owner: 仓库拥有者（用户名或组织名）
+- repo: 仓库名称
+- index: Issue 索引号（数字编号）
+- body: 评论内容
+ 
+![](img/example/create_issue_comment.png)
 
 ### edit_issue_comment
 编辑问题评论
 
 **Prompt 示例：**
+
 ```
 请将我在 issue #123 下的最新评论修改为："修复已完成，正在测试中。"
 ```
 
-**使用场景：**
-- 信息更正
-- 评论更新
-- 内容维护
+**所需参数：**
+- owner: 仓库拥有者（用户名或组织名）
+- repo: 仓库名称
+- commentID: 评论的唯一编号（ID）
+- body: 新的评论内容
+ 
+![](img/example/edit_issue_comment.png)
 
 ## 🔄 拉取请求
 
@@ -204,23 +195,29 @@
 请创建一个从 "feature/user-auth" 分支到 "main" 分支的 pull request，标题为 "添加用户认证功能"，描述为 "实现了用户登录、注册和权限验证功能"。
 ```
 
-**使用场景：**
-- 代码合并
-- 功能集成
-- 代码审查
+**所需参数：**
+- owner: 仓库拥有者（用户名或组织名）
+- repo: 仓库名称
+- title: PR 标题
+- body: PR 描述/正文
+- head: 源分支（可含命名空间，如 user:branch）
+- base: 目标分支
+ 
+![](img/example/create_pull_request.png)
 
 ### list_repo_pull_requests
 列出拉取请求
 
 **Prompt 示例：**
 ```
-请列出 "my-project" 仓库的所有 open 状态的 pull request，包括标题、作者和创建时间。
+列出 "my-project" 仓库的所有 open 状态的 pull request。
 ```
 
-**使用场景：**
-- PR 概览
-- 代码审查
-- 合并管理
+**所需参数：**
+- owner: 仓库拥有者（用户名或组织名）
+- repo: 仓库名称
+ 
+![](img/example/list_repo_pull_request.png)
 
 ## 💡 高级使用技巧
 
@@ -232,17 +229,11 @@
 3. 获取该仓库的 README 文件内容进行分析
 ```
 
-### 批量操作
+**Agent模式大模型自动规划**
+
 ```
-请列出我拥有的所有仓库，然后为每个仓库创建一个 "需要更新依赖" 的 issue。
+比如：不给他用户信息就让列出所有的issue
+他会自动规划调用tools 先调用 get_my_user_info确定用户信息 再调用 list_repo_issues
 ```
 
-### 自动化工作流
-```
-请帮我：
-1. 从 main 分支创建新分支 "chore/update-deps"
-2. 获取 package.json 文件内容
-3. 分析依赖版本
-4. 创建 issue 记录需要更新的依赖
-```
-
+![](img/ex-5.png)
