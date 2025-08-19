@@ -22,43 +22,40 @@ DevStar MCP Server 是一个完整的AI驱动开发平台解决方案，通过�
 如果您是在Windows环境下，请在cmd命令行下先运行如下命令：
 
 ```
-wsl --install -d Ubuntu-20.04 && wsl --setdefault Ubuntu-20.04
+powershell wsl --install -d Ubuntu-20.04
+```
+
+如果以上命令无法自动完成安装WSL，可以手动执行如下两条命令完成安装：
+
+```
+dism.exe /Online /Enable-Feature /FeatureName:Microsoft-Windows-Subsystem-Linux /All /LimitAccess /All
+dism.exe /Online /Enable-Feature /FeatureName:VirtualMachinePlatform /All /LimitAccess
 ```
 
 在Ubuntu-20.04下完成安装：
 
-```bash
-# download and install go
-wget -c https://go.dev/dl/go1.23.3.linux-amd64.tar.gz 
-sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.23.3.linux-amd64.tar.gz
-export PATH=$PATH:/usr/local/go/bin
-go version
+```
+wget -c https://devstar.cn/assets/install.sh && chmod +x install.sh && sudo ./install.sh
 
-# download and install Node.js
-wget -c https://nodejs.org/dist/v22.11.0/node-v22.11.0-linux-x64.tar.xz
-sudo tar -xf node-v22.11.0-linux-x64.tar.xz -C /usr/local/
-echo 'export PATH=/usr/local/node-v22.11.0-linux-x64/bin:$PATH' >> ~/.bashrc
-source ~/.bashrc
-node -v # should print `v22.11.0`
-npm -v # should print `10.9.0`
-
-
-
+devstar help
+------------------------------------------------------------------------
+DevStar usage help:
+  help, -h, --help,     Help information
+  start                 Start DevStar Studio
+      --port=<arg>      Specify the port number (default port is 8080)
+      --version=<arg>   Specify the DevStar Studio Image Version (default verson is latest)
+  stop                  Stop the running DevStar Studio
+  logs                  View the logs of the devstar-studio container
+  clean                 Clean up the running DevStar Studio, including deleting user data. Please use with caution.
+------------------------------------------------------------------------
+sudo devstar start
+...
+-------------------------------------------------------
+DevStar started in http://localhost:8080 successfully!
+-------------------------------------------------------
 ```
 
-#### Start from Container Image
-
-```
-make docker
-public/assets/install.sh start --image=devstar-studio:latest
-
-# 查看日志
-public/assets/install.sh logs
-# 停止并删除devstar-studio容器
-public/assets/install.sh clean
-# 删除所有容器
-sudo docker stop $(docker ps -aq) && sudo docker rm -f $(docker ps -aq)
-```
+然后通过浏览器打开[http://localhost:8080](http://localhost:8080/) 完成后配置安装，默认第一个注册用户为管理员账户。
 
 **产出结果：** 可访问的 DevStar 代码托管平台 URL
 
@@ -109,37 +106,9 @@ curl https://xxxx.xxxx.xxxx
 git clone https://gitea.com/gitea/gitea-mcp.git
 
 make install
-#构建后，将二进制文件 gitea-mcp 复制到系统 PATH 中包含的目录。例如：
+# 构建后，将二进制文件 gitea-mcp 复制到系统 PATH 中包含的目录。例如：
 cp gitea-mcp /usr/local/bin/
 
-# 配置 MCP 服务器 --stdio
-{
-  "mcpServers": {
-    "gitea": {
-      "command": "gitea-mcp",
-      "args": [
-        "-t",
-        "stdio",
-        "--host",
-        "https://devstar.cn"
-        // "--token", "<your personal access token>"
-      ],
-      "env": {
-        // "GITEA_HOST": "https://devstar.cn",
-        // "GITEA_INSECURE": "true",
-        "GITEA_ACCESS_TOKEN": "<your personal access token>"
-      }
-    }
-  }
-}
-#配置 MCP 服务器 --sse
-{
-  "mcpServers": {
-    "gitea": {
-      "url": "http://localhost:8080/sse"
-    }
-  }
-}
 ```
 
 **产出结果：** 可用的 Gitea MCP 服务器实例
@@ -170,7 +139,8 @@ cursor内置了很多LLMs，包括最先进的GPT4、Claude4和openai最新发�
 
 #### 4.2 在 Cursor 中配置 MCP 服务器
 
-**方式一：全局设置**
+**全局设置**
+
 1. Cursor Setting → Tools & Integrations → MCP Tools
 2. 点击 "New MCP Server"
 3. 将前面步骤中的 MCP 配置代码添加到 `mcp.json` 文件
@@ -179,8 +149,55 @@ cursor内置了很多LLMs，包括最先进的GPT4、Claude4和openai最新发�
 
 ![](docs/img/cursor-2.png)
 
-**方式二：项目级别设置**
-在项目目录的 `.cursor` 目录中新建 `mcp.json` 文件进行配置
+**mcp.json文件**
+
+**stdio方式**
+
+将GITEA_HOST配置为前面步骤中获取的 DevStar 代码托管平台 URL
+
+GITEA_ACCESS_TOKEN配置为个人的access token
+
+```
+# 配置 MCP 服务器 --stdio
+{
+  "mcpServers": {
+    "gitea": {
+      "command": "gitea-mcp",
+      "args": [
+        "-t",
+        "stdio",
+        "--host",
+        "https://devstar.cn"
+        // "--token", "<your personal access token>"
+      ],
+      "env": {
+        // "GITEA_HOST": "https://devstar.cn",
+        // "GITEA_INSECURE": "true",
+        "GITEA_ACCESS_TOKEN": "<your personal access token>"
+      }
+    }
+  }
+}
+```
+
+
+
+**sse方式**
+
+```
+./gitea-mcp -t sse --port 8080 --host <your devstar url> --token <your personal access token>
+
+#配置 MCP 服务器 --sse
+{
+  "mcpServers": {
+    "gitea": {
+      "url": "http://localhost:8080/sse"
+    }
+  }
+}
+```
+
+
 
 #### 4.3 验证配置
 
