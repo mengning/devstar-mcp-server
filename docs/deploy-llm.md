@@ -104,21 +104,21 @@ curl http://localhost:11434/api/tags
 
 然后我们得到了 OpenAI Public URL 的端点
 
-![](C:\Users\11868\Desktop\组会\6101.webp)
+![](img/llm-1.png)
 
 检查终端节点是否处于活动状态
 
-![](C:\Users\11868\Desktop\组会\6102.webp)
+![](img/llm-2.png)
 
 ### 3.定义模型
 
 定义我们在cursor中使用的模型，可以使用 `ollama list` 查看您拥有的模型列表。
 
-![](C:\Users\11868\Desktop\组会\6103.webp)
+![](img/llm-3.png)
 
 ### 4.配置base url 和 openai key
 
 在 OpenAI Key 上，使用 `https://xxxxxx.ngrok-free.app` 的公共 url 和 api key `ollama` 完成。
 
-![](C:\Users\11868\Desktop\组会\6104.webp)
+![](img/llm-4.png)
 
