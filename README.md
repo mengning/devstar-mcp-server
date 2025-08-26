@@ -46,7 +46,9 @@ DevStar started in http://localhost:8080 successfully!
 
 **产出结果：** 可访问的 DevStar 代码托管平台 URL
 
-📖 [详细部署指南](docs/devstar.md)
+如果你想试用在线演示或者使用免费的DevStar服务（有数量限制），请访问 [devstar.cn](https://devstar.cn/)。
+
+如果你想快速本地部署自己的DevStar实例免费试用或者报告问题，请访问 [https://github.com/mengning/DevStar](https://github.com/mengning/DevStar)。
 
 ### 二、私有化部署大语言模型
 
