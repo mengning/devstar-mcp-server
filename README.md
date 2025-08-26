@@ -19,19 +19,6 @@ DevStar MCP Server 是一个完整的AI驱动开发平台解决方案，通过�
 
 ### 一、部署 DevStar 代码托管平台
 
-如果您是在Windows环境下，请在cmd命令行下先运行如下命令：
-
-```
-powershell wsl --install -d Ubuntu-20.04
-```
-
-如果以上命令无法自动完成安装WSL，可以手动执行如下两条命令完成安装：
-
-```
-dism.exe /Online /Enable-Feature /FeatureName:Microsoft-Windows-Subsystem-Linux /All /LimitAccess /All
-dism.exe /Online /Enable-Feature /FeatureName:VirtualMachinePlatform /All /LimitAccess
-```
-
 在Ubuntu-20.04下完成安装：
 
 ```
