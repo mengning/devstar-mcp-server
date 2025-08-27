@@ -55,35 +55,39 @@ DevStar started in http://localhost:8080 successfully!
 使用 Ollama 在本地部署高性能代码生成模型，并通过 ngrok 提供公共访问接口，支持多种编程语言和开发场景。
 
 **安装部署：**
+1. 安装 Ollama
 ```bash
-# 1. 安装 Ollama
 curl -fsSL https://ollama.com/install.sh | sh
-
-# 2. 下载模型
+```
+2. 下载模型
+```bash
 ollama pull deepseek-r1:7b      # 平衡选择
 ollama pull qwen2.5-coder:7b    # 代码专用
-
-# 3. 启动 Ollama 服务
+```
+3. 启动 Ollama 服务
+```bash   
 ollama serve
+```
+4. 安装并配置 ngrok
+```bash
+curl -sSL https://ngrok-agent.s3.amazonaws.com/ngrok.asc \
+  | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null \
+  && echo "deb https://ngrok-agent.s3.amazonaws.com bookworm main" \
+  | sudo tee /etc/apt/sources.list.d/ngrok.list \
+  && sudo apt update \
+  && sudo apt install ngrok
 
-# 4. 安装并配置 ngrok
-# 从 https://ngrok.com/ 下载并登录
-
-# 5. 启动 ngrok 提供公共访问
-.\ngrok.exe http 11434 --host-header="localhost:11434"
+ngrok config add-authtoken
+```
+5. 启动 ngrok 提供公共访问
+```bash  
+ngrok http 11434 --host-header="localhost:11434"
 ```
 
 **产出结果：** 通过 ngrok 公共 URL 访问的本地大模型 API
 
 ![](docs/img/llm-1.png)
 
-检查终端节点是否处于活动状态
-
-```
-curl https://xxxx.xxxx.xxxx
-```
-
-![](docs/img/llm-2.png)
 
 📖 [详细部署指南](docs/deploy-llm.md)
 
@@ -123,6 +127,8 @@ cursor内置了很多LLMs，包括最先进的GPT4、Claude4和openai最新发�
 2. 在 OpenAI Key 字段输入：`ollama`
 
 3. 在 Base URL 字段输入：前面步骤中获取的 ngrok 公共地址
+  
+4. 点击Verify，如果不成功，取消选中所有其他模型，仅选中刚添加的模型，再点击 Verify 即可。
 
 ![](docs/img/llm-4.png)
 
